@@ -20,7 +20,7 @@ To write a program to predict the type of species of the Iris flower using the S
 Program to implement the prediction of iris species using SGD Classifier.
 Developed by:LATKSHAYA S
 RegisterNumber:212225240078
-# 1️⃣ Import Libraries
+#  Import Libraries
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -28,25 +28,25 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import SGDClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
-# 2️⃣ Load Dataset
+# 2.Load Dataset
 data = pd.read_csv("Placement_Data.csv")
 
-# 3️⃣ Separate Features and Target
+# 3.Separate Features and Target
 X = data.drop(["status", "salary", "sl_no"], axis=1)
 y = data["status"]
 
-# 4️⃣ One-Hot Encoding for Categorical Columns
+# 4️. One-Hot Encoding for Categorical Columns
 X = pd.get_dummies(X, drop_first=True)
 
-# 5️⃣ Save Feature Names
+# 5️. Save Feature Names
 feature_names = X.columns
 
-# 6️⃣ Train-Test Split
+# 6️.Train-Test Split
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
 
-# 7️⃣ Feature Scaling (keep as DataFrame)
+# 7️.Feature Scaling (keep as DataFrame)
 scaler = StandardScaler()
 X_train_scaled = pd.DataFrame(
     scaler.fit_transform(X_train),
@@ -57,16 +57,16 @@ X_test_scaled = pd.DataFrame(
     columns=feature_names
 )
 
-# 8️⃣ Create SGD Classifier
+# 8️.Create SGD Classifier
 model = SGDClassifier(max_iter=1000, tol=1e-3, random_state=42)
 
-# 9️⃣ Train Model
+# 9️.Train Model
 model.fit(X_train_scaled, y_train)
 
-# 🔟 Predict on Test Data
+# 10. Predict on Test Data
 y_pred = model.predict(X_test_scaled)
 
-# 1️⃣1️⃣ Accuracy & Reports
+# 11. Accuracy & Reports
 print("Accuracy:", accuracy_score(y_test, y_pred))
 
 print("\nConfusion Matrix:")
@@ -76,7 +76,7 @@ print("\nClassification Report:")
 print(classification_report(y_test, y_pred))
 
 # ============================
-# 1️⃣2️⃣ Correct New Student Prediction
+# 1️2. Correct New Student Prediction
 # ============================
 
 # Create empty student with all features = 0
